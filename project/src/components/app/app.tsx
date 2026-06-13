@@ -9,6 +9,7 @@ import MyQuests from '../../pages/my-quests/my-quests';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 import { Offer } from '../../types/types';
+import Layout from '../layout/layout';
 
 type AppProps = {
   offers: Offer[];
@@ -16,30 +17,31 @@ type AppProps = {
 const App = ({offers}: AppProps): JSX.Element => (
   <BrowserRouter>
     <Routes>
-      <Route index element={<Catalog offers={offers}/>} />
-      <Route path={AppRoute.Login} element={<Login />} />
-      <Route path={AppRoute.Contacts} element={<Contacts />} />
-      <Route path={`${AppRoute.Quest}/:id`} element={<Quest />} />
+      <Route path='/' element={<Layout />}>
+        <Route index element={<Catalog offers={offers}/>} />
+        <Route path={AppRoute.Login} element={<Login />} />
+        <Route path={AppRoute.Contacts} element={<Contacts />} />
+        <Route path={`${AppRoute.Quest}/:id`} element={<Quest />} />
 
-      <Route path={AppRoute.Booking}
-        element={
-          <PrivateRoute
-            authorizationStatus={AuthorizationStatus.NoAuth}
-          >
-            <Booking />
-          </PrivateRoute>
-        }
-      />
-      <Route path={AppRoute.MyQuests}
-        element={
-          <PrivateRoute
-            authorizationStatus={AuthorizationStatus.Auth}
-          >
-            <MyQuests offers={offers} />
-          </PrivateRoute>
-        }
-      />
-
+        <Route path={AppRoute.Booking}
+          element={
+            <PrivateRoute
+              authorizationStatus={AuthorizationStatus.NoAuth}
+            >
+              <Booking />
+            </PrivateRoute>
+          }
+        />
+        <Route path={AppRoute.MyQuests}
+          element={
+            <PrivateRoute
+              authorizationStatus={AuthorizationStatus.Auth}
+            >
+              <MyQuests offers={offers} />
+            </PrivateRoute>
+          }
+        />
+      </Route>
       <Route path='*' element={<NotFound />} />
     </Routes>
   </BrowserRouter>

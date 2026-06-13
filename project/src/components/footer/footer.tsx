@@ -1,4 +1,3 @@
-import { defer } from "react-router-dom";
 
 const Footer = ():JSX.Element => (
   <footer className="footer">
