@@ -1,0 +1,52 @@
+import { Offer } from '../types/types';
+
+export const offers:Offer[] = [
+  {
+    id: 'id-1',
+    title: 'заголовок',
+    previewImg: 'img/content/mars/mars-size-s.jpg',
+    previewImgWebp: 'img/content/mars/mars-size-s.webp',
+    level: 'easy',
+    type: 'horror',
+    peopleMinMax: [3, 7],
+    description: 'description-1',
+    coverImg: 'img/content/mars/mars-size-s.jpg',
+    coverImgWebp: 'img/content/mars/mars-size-s.webp',
+  },
+  {
+    id: 'id-2',
+    title: 'title-2',
+    previewImg: 'img/content/maniac/maniac-bg.jpg',
+    previewImgWebp: 'img/content/maniac/maniac-bg.webp',
+    level: 'medium',
+    type: 'mystic',
+    peopleMinMax: [1, 3],
+    description: 'description-2',
+    coverImg: 'img/content/maniac/maniac-bg.jpg',
+    coverImgWebp: 'img/content/maniac/maniac-bg.webp',
+  },
+  {
+    id: 'id-3',
+    title: 'title-3',
+    previewImg: 'img/content/loft/loft-size-s.jpg',
+    previewImgWebp: 'img/content/loft/loft-size-s.webp',
+    level: 'hard',
+    type: 'detective',
+    peopleMinMax: [2, 5],
+    description: 'description-3',
+    coverImg: 'img/content/loft/loft-size-s.jpg',
+    coverImgWebp: 'img/content/loft/loft-size-s.webp',
+  },
+  {
+    id: 'id-4',
+    title: 'title-4',
+    previewImg: 'img/content/ghosts/ghosts-size-s.jpg',
+    previewImgWebp: 'img/content/ghosts/ghosts-size-s.webp',
+    level: 'hard',
+    type: 'detective',
+    peopleMinMax: [1, 5],
+    description: 'description-4',
+    coverImg: 'img/content/ghosts/ghosts-size-s.jpg',
+    coverImgWebp: 'img/content/ghosts/ghosts-size-s.webp',
+  }
+];

@@ -1,9 +1,11 @@
-import Card from '../../components/card/card';
+import CardsList from '../../components/cards-list/cards-list';
 import Header from '../../components/header/header';
+import { Offer } from '../../types/types';
+
 type CatalogProps = {
-  cardCount: number;
+  offers: Offer[];
 }
-const Catalog = ({cardCount}: CatalogProps): JSX.Element => (
+const Catalog = ({offers}: CatalogProps): JSX.Element => (
   <>
     <Header />
     <main className="page-content">
@@ -96,9 +98,7 @@ const Catalog = ({cardCount}: CatalogProps): JSX.Element => (
           </form>
         </div>
         <h2 className="title visually-hidden">Выберите квест</h2>
-        <div className="cards-grid">
-          {Array.from({length: cardCount}, () => <Card key={3}/>)}
-        </div>
+        <CardsList offers={offers} />
       </div>
     </main>
     <footer className="footer">
