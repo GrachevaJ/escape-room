@@ -1,4 +1,4 @@
-import { Offer } from '../types/types';
+import { BookingInfo, Offer } from '../types/types';
 
 export const offers:Offer[] = [
   {
@@ -48,5 +48,72 @@ export const offers:Offer[] = [
     description: 'description-4',
     coverImg: 'img/content/ghosts/ghosts-size-s.jpg',
     coverImgWebp: 'img/content/ghosts/ghosts-size-s.webp',
+  }
+];
+
+
+export const bookingInformation: BookingInfo[] = [
+  {
+    id: '1',
+    location: {
+      address: 'Lenina 5',
+      coords: [52.3909553943508, 4.85309666406198],
+    },
+    slots: {
+      today: [{
+        time: '13.00',
+        isAvailable: true,
+      },
+      {
+        time: '16.00',
+        isAvailable: false,
+      }],
+      tomorrow: [{
+        time: '13.00',
+        isAvailable: true,
+      }]
+    }
+  },
+  {
+    id: '3',
+    location: {
+      address: 'Gogolya 35',
+      coords: [52.3609553943508, 4.85309666406198],
+    },
+    slots: {
+      today: [{
+        time: '14.00',
+        isAvailable: true,
+      },
+      {
+        time: '20.00',
+        isAvailable: false,
+      }],
+      tomorrow: [{
+        time: '13.00',
+        isAvailable: false,
+      }]
+    }
+  },
+  {
+    id: '2',
+    location: {
+      address: 'Shkolnaya 7',
+      coords: [52.3909553943508, 4.929309666406198],
+    },
+    slots: {
+      today: [{
+        time: '14.00',
+        isAvailable: false,
+      },
+      {
+        time: '18.30',
+        isAvailable: true,
+      }],
+      tomorrow: [{
+        time: '17.00',
+        isAvailable: true,
+      }]
+    }
   }
 ];

@@ -15,3 +15,23 @@ export type Offer = {
   coverImg: string;
   coverImgWebp: string;
 };
+
+export type Location = {
+  address: string;
+  coords: [number, number];
+};
+
+export type BookingInfo = {
+  id: string;
+  location: Location;
+  slots: {
+    today: {
+      time: string;
+      isAvailable: boolean;
+    }[];
+    tomorrow: {
+     time: string;
+     isAvailable: boolean;
+    }[];
+  };
+};

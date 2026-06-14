@@ -25,10 +25,10 @@ export const levelLabels: Record<LevelName, string> = {
 };
 
 export const typeLabels: Record<TypeName, string> = {
-  'adventures': 'приключение',
+  'adventures': 'приключения',
   'horror': 'ужасы',
   'mystic': 'мистика',
   'detective': 'детектив',
-  'sci-fi': 'научная фантастика'
+  'sci-fi': 'sci-fi'
 };
 

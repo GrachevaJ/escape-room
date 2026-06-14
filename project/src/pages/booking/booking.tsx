@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { bookingInformation } from '../../mocks/offers';
+import Map from '../../components/map/map';
 
 const Booking = ():JSX.Element => (
   <main className="page-content decorated-page">
@@ -16,7 +18,9 @@ const Booking = ():JSX.Element => (
       <div className="page-content__item">
         <div className="booking-map">
           <div className="map">
-            <div className="map__container"></div>
+            <div className="map__container">
+              <Map locations={bookingInformation.map((item) => item.location)}/>
+            </div>
           </div>
           <p className="booking-map__address">Вы&nbsp;выбрали: наб. реки Карповки&nbsp;5, лит&nbsp;П, м. Петроградская</p>
         </div>

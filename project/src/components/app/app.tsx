@@ -26,7 +26,7 @@ const App = ({offers}: AppProps): JSX.Element => (
         <Route path={AppRoute.Booking}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
               <Booking />
             </PrivateRoute>
