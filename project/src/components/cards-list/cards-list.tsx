@@ -6,7 +6,10 @@ type CardsListProps = {
 }
 
 const CardsList = ({place = 'catalog'}: CardsListProps):JSX.Element => {
-  const offers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector((state) =>
+    state.offers
+      .filter((offer) => state.level === 'any' || offer.level === state.level)
+      .filter((offer) => state.type === 'all' || offer.type === state.type));
 
   return (
     <div className="cards-grid">
