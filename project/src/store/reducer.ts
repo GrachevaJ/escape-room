@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { Offer } from '../types/types';
-import { setLevel, setOffers, setType } from './actions';
+import { resetFilters, setLevel, setOffers, setType } from './actions';
 
 type State = {
   offers: Offer[];
@@ -24,5 +24,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setType, (state, action) => {
       state.type = action.payload;
+    })
+    .addCase(resetFilters, (state) => {
+      state.level = 'any';
+      state.type = 'all';
     });
 });

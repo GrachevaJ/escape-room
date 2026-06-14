@@ -1,15 +1,28 @@
-import { useAppSelector } from '../../hooks/use-app';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import Card from '../card/card';
+import { resetFilters } from '../../store/actions';
 
 type CardsListProps = {
   place?: 'catalog' | 'my-quests';
 }
 
 const CardsList = ({place = 'catalog'}: CardsListProps):JSX.Element => {
-  const offers = useAppSelector((state) =>
-    state.offers
+  const dispatch = useAppDispatch();
+
+  const offers = useAppSelector((state) => {
+    if (place !== 'catalog') {
+      return state.offers;
+    }
+
+    return state.offers
       .filter((offer) => state.level === 'any' || offer.level === state.level)
-      .filter((offer) => state.type === 'all' || offer.type === state.type));
+      .filter((offer) => state.type === 'all' || offer.type === state.type);
+  });
+
+  useEffect(() => () => {
+    dispatch(resetFilters());
+  }, [dispatch]);
 
   return (
     <div className="cards-grid">
