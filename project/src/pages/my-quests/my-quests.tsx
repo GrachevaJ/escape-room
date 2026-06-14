@@ -1,11 +1,6 @@
 import CardsList from '../../components/cards-list/cards-list';
-import { Offer } from '../../types/types';
 
-type MyQuestsProps = {
-  offers: Offer[];
-}
-
-const MyQuests = ({offers}: MyQuestsProps):JSX.Element => (
+const MyQuests = ():JSX.Element => (
   <main className="page-content decorated-page">
     <div className="decorated-page__decor" aria-hidden="true">
       <picture>
@@ -16,7 +11,7 @@ const MyQuests = ({offers}: MyQuestsProps):JSX.Element => (
       <div className="page-content__title-wrapper">
         <h1 className="title title--size-m page-content__title">Мои бронирования</h1>
       </div>
-      <CardsList offers={offers} place='my-quests' />
+      <CardsList place='my-quests' />
     </div>
   </main>
 );

@@ -18,7 +18,7 @@ const Card = ({offer, place}: CardProps):JSX.Element => {
           </picture>
         </div>
         <div className="quest-card__content">
-          <div className="quest-card__info-wrapper"><a className="quest-card__link" href="quest.html">{title}</a>
+          <div className="quest-card__info-wrapper"><Link to={`${AppRoute.Quest}/${id}`} className="quest-card__link" >{title}</Link>
             {place === 'my-quests' ? (<span className="quest-card__info">[сегодня,&nbsp;17:00. наб. реки Карповки&nbsp;5, лит&nbsp;П<br/>м. Петроградская]</span>) : ''}
           </div>
           <ul className="tags quest-card__tags">

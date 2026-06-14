@@ -8,17 +8,13 @@ import Booking from '../../pages/booking/booking';
 import MyQuests from '../../pages/my-quests/my-quests';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
-import { Offer } from '../../types/types';
 import Layout from '../layout/layout';
 
-type AppProps = {
-  offers: Offer[];
-}
-const App = ({offers}: AppProps): JSX.Element => (
+const App = (): JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route index element={<Catalog offers={offers}/>} />
+        <Route index element={<Catalog />} />
         <Route path={AppRoute.Login} element={<Login />} />
         <Route path={AppRoute.Contacts} element={<Contacts />} />
         <Route path={`${AppRoute.Quest}/:id`} element={<Quest />} />
@@ -37,7 +33,7 @@ const App = ({offers}: AppProps): JSX.Element => (
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.Auth}
             >
-              <MyQuests offers={offers} />
+              <MyQuests />
             </PrivateRoute>
           }
         />

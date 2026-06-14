@@ -15,17 +15,19 @@ export enum AuthorizationStatus {
     Unknown = 'UNKNOWN',
 }
 
-export const levels = ['easy', 'medium', 'hard'];
-export const types = ['adventures', 'horror', 'mystic', 'detective', 'sci-fi'];
+export const levels = ['any', 'easy', 'medium', 'hard'];
+export const types = ['all', 'adventure', 'horror', 'mystic', 'detective', 'sci-fi'];
 
 export const levelLabels: Record<LevelName, string> = {
+  'any': 'любой',
   'easy': 'легкий',
   'medium': 'средний',
   'hard': 'сложный'
 };
 
 export const typeLabels: Record<TypeName, string> = {
-  'adventures': 'приключения',
+  'all': 'все квесты',
+  'adventure': 'приключения',
   'horror': 'ужасы',
   'mystic': 'мистика',
   'detective': 'детектив',

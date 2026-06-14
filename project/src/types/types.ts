@@ -1,4 +1,5 @@
 import { levels, types } from '../const';
+import store from '../store/store';
 
 export type LevelName = typeof levels[number];
 export type TypeName = typeof types[number];
@@ -35,3 +36,6 @@ export type BookingInfo = {
     }[];
   };
 };
+
+export type State = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
