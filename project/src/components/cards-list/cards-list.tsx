@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import Card from '../card/card';
 import { resetFilters } from '../../store/actions';
+import Spinner from '../spinner/spinner';
 
 type CardsListProps = {
   place?: 'catalog' | 'my-quests';
@@ -9,7 +10,7 @@ type CardsListProps = {
 
 const CardsList = ({place = 'catalog'}: CardsListProps):JSX.Element => {
   const dispatch = useAppDispatch();
-
+  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
   const offers = useAppSelector((state) => {
     if (place !== 'catalog') {
       return state.offers;
@@ -23,6 +24,10 @@ const CardsList = ({place = 'catalog'}: CardsListProps):JSX.Element => {
   useEffect(() => () => {
     dispatch(resetFilters());
   }, [dispatch]);
+
+  if (isOffersLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="cards-grid">

@@ -15,6 +15,10 @@ export enum AuthorizationStatus {
     Unknown = 'UNKNOWN',
 }
 
+export enum ApiRoute {
+  Offers = '/quest'
+}
+
 export const levels = ['any', 'easy', 'medium', 'hard'];
 export const types = ['all', 'adventure', 'horror', 'mystic', 'detective', 'sci-fi'];
 
