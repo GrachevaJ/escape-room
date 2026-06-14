@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import Card from '../card/card';
 import { resetFilters } from '../../store/actions';
 import Spinner from '../spinner/spinner';
+import CardsListEmpty from '../cards-list-empty/cards-list-empty';
 
 type CardsListProps = {
   place?: 'catalog' | 'my-quests';
@@ -27,6 +28,10 @@ const CardsList = ({place = 'catalog'}: CardsListProps):JSX.Element => {
 
   if (isOffersLoading) {
     return <Spinner />;
+  }
+
+  if (offers.length === 0) {
+    return <CardsListEmpty />;
   }
 
   return (
