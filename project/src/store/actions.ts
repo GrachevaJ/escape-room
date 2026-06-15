@@ -17,7 +17,8 @@ export const Action = {
   RESET_FILTERS: 'filters/reset',
   FETCH_OFFERS: 'offers/fetch',
   FETCH_USER_STATUS: 'user/fetch-status',
-  LOGIN_USER: 'user/login'
+  LOGIN_USER: 'user/login',
+  LOGOUT_USER: 'user/logout'
 };
 
 export const setLevel = createAction<LevelName>(Action.SET_LEVEL);
@@ -55,6 +56,16 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, {extra: E
     history.push(AppRoute.Catalog);
 
     return email;
+  }
+);
+
+export const logoutUser = createAsyncThunk<void, undefined, {extra: Extra}>(
+  Action.LOGOUT_USER,
+  async (_, {extra}) => {
+    const {api} = extra;
+    await api.delete(ApiRoute.Logout);
+
+    Token.drop();
   }
 );
 

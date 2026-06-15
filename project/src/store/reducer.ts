@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { Offer, User } from '../types/types';
-import { fetchOffers, fetchUserStatus, loginUser, resetFilters, setLevel, setType } from './actions';
+import { fetchOffers, fetchUserStatus, loginUser, logoutUser, resetFilters, setLevel, setType } from './actions';
 import { AuthorizationStatus } from '../const';
 
 type State = {
@@ -51,5 +51,9 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loginUser.fulfilled, (state, action) => {
       state.user = action.payload;
       state.authorizationStatus = AuthorizationStatus.Auth;
+    })
+    .addCase(logoutUser.fulfilled, (state) => {
+      state.user = '';
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
     });
 });
