@@ -22,7 +22,7 @@ export enum ApiRoute {
 }
 
 export const levels = ['any', 'easy', 'medium', 'hard'];
-export const types = ['all', 'adventure', 'horror', 'mystic', 'detective', 'sci-fi'];
+export const types = ['all', 'adventures', 'horror', 'mystic', 'detective', 'sci-fi'];
 
 export const levelLabels: Record<LevelName, string> = {
   'any': 'любой',
@@ -33,7 +33,7 @@ export const levelLabels: Record<LevelName, string> = {
 
 export const typeLabels: Record<TypeName, string> = {
   'all': 'все квесты',
-  'adventure': 'приключения',
+  'adventures': 'приключения',
   'horror': 'ужасы',
   'mystic': 'мистика',
   'detective': 'детектив',

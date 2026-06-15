@@ -12,12 +12,23 @@ const Type = ({name, isActive, onClick}: TypeProps):JSX.Element =>{
     onClick(name);
   };
 
+  const isTypeAll = name === 'all';
+  const isTypeAdventures = name === 'adventures';
+
+  let iconName = name;
+  if (isTypeAll) {
+    iconName = 'all-quests';
+  }
+  if (isTypeAdventures) {
+    iconName = 'adventure';
+  }
+
   return (
     <li className="filter__item" onClick={handleClick}>
       <input type="radio" name="type" id={name} checked={isActive} />
       <label className="filter__label" htmlFor={name}>
         <svg className="filter__icon" width="26" height="30" aria-hidden="true">
-          <use xlinkHref={`#icon-${name === 'all' ? 'all-quests' : name}`}></use>
+          <use xlinkHref={`#icon-${iconName}`}></use>
         </svg><span className="filter__label-text">{`${typeLabels[name][0].toUpperCase()}${typeLabels[name].slice(1)}`}</span>
       </label>
     </li>

@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { Offer, User } from '../types/types';
-import { fetchOffers, fetchUserStatus, loginUser, logoutUser, resetFilters, setLevel, setType } from './actions';
+import { fetchOffer, fetchOffers, fetchUserStatus, loginUser, logoutUser, resetFilters, setLevel, setType } from './actions';
 import { AuthorizationStatus } from '../const';
 
 type State = {
@@ -10,15 +10,19 @@ type State = {
   isOffersLoading: boolean;
   authorizationStatus: AuthorizationStatus;
   user: User['email'];
+  offer: Offer | null;
+  isOfferLoading: boolean;
 }
 
 const initialState: State = {
   offers: [],
   level: 'any',
   type: 'all',
-  isOffersLoading: true,
+  isOffersLoading: false,
   authorizationStatus: AuthorizationStatus.NoAuth,
-  user: ''
+  user: '',
+  offer: null,
+  isOfferLoading: false
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -34,13 +38,13 @@ export const reducer = createReducer(initialState, (builder) => {
       state.type = 'all';
     })
     .addCase(fetchOffers.pending, (state) => {
-      state.isOffersLoading = false;
+      state.isOffersLoading = true;
     })
     .addCase(fetchOffers.fulfilled, (state, action) => {
       state.offers = action.payload;
     })
     .addCase(fetchOffers.rejected, (state) => {
-      state.isOffersLoading = false;
+      state.isOffersLoading = true;
     })
     .addCase(fetchUserStatus.fulfilled, (state) => {
       state.authorizationStatus = AuthorizationStatus.Auth;
@@ -55,5 +59,15 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(logoutUser.fulfilled, (state) => {
       state.user = '';
       state.authorizationStatus = AuthorizationStatus.NoAuth;
+    })
+    .addCase(fetchOffer.pending, (state) => {
+      state.isOfferLoading = true;
+    })
+    .addCase(fetchOffer.fulfilled, (state, action) => {
+      state.isOfferLoading = false;
+      state.offer = action.payload;
+    })
+    .addCase(fetchOffer.rejected, (state) => {
+      state.isOfferLoading = true;
     });
 });

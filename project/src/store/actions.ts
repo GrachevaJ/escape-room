@@ -1,10 +1,10 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import type { History } from 'history';
 import { LevelName, Offer, TypeName, User, UserAuth } from '../types/types';
-import type { AxiosInstance } from 'axios';
 import { ApiRoute, AppRoute } from '../const';
 import { Token } from '../utils';
 import history from '../history';
+import { AxiosInstance } from 'axios';
 
 type Extra = {
   api: AxiosInstance;
@@ -18,7 +18,8 @@ export const Action = {
   FETCH_OFFERS: 'offers/fetch',
   FETCH_USER_STATUS: 'user/fetch-status',
   LOGIN_USER: 'user/login',
-  LOGOUT_USER: 'user/logout'
+  LOGOUT_USER: 'user/logout',
+  FETCH_OFFER: 'offer/fetch'
 };
 
 export const setLevel = createAction<LevelName>(Action.SET_LEVEL);
@@ -69,3 +70,12 @@ export const logoutUser = createAsyncThunk<void, undefined, {extra: Extra}>(
   }
 );
 
+export const fetchOffer = createAsyncThunk<Offer, Offer['id'], {extra: Extra}>(
+  Action.FETCH_OFFER,
+  async (id, {extra}) => {
+    const {api} = extra;
+    const {data} = await api.get<Offer>(`${ApiRoute.Offers}/${id}`);
+
+    return data;
+  }
+);
