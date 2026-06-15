@@ -16,7 +16,8 @@ export enum AuthorizationStatus {
 }
 
 export enum ApiRoute {
-  Offers = '/quest'
+  Offers = '/quest',
+  Login = '/login'
 }
 
 export const levels = ['any', 'easy', 'medium', 'hard'];

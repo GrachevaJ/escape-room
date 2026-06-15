@@ -1,19 +1,22 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { Offer } from '../types/types';
-import { fetchOffers, resetFilters, setLevel, setType } from './actions';
+import { fetchOffers, fetchUserStatus, resetFilters, setLevel, setType } from './actions';
+import { AuthorizationStatus } from '../const';
 
 type State = {
   offers: Offer[];
   level: string;
   type: string;
   isOffersLoading: boolean;
+  authorizationStatus: AuthorizationStatus;
 }
 
 const initialState: State = {
   offers: [],
   level: 'any',
   type: 'all',
-  isOffersLoading: true
+  isOffersLoading: true,
+  authorizationStatus: AuthorizationStatus.NoAuth
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -36,5 +39,11 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchOffers.rejected, (state) => {
       state.isOffersLoading = false;
+    })
+    .addCase(fetchUserStatus.fulfilled, (state) => {
+      state.authorizationStatus = AuthorizationStatus.Auth;
+    })
+    .addCase(fetchUserStatus.rejected, (state) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
     });
 });

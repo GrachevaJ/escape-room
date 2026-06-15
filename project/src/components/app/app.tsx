@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import Catalog from '../../pages/catalog/catalog';
 import Login from '../../pages/login/login';
 import Contacts from '../../pages/contacts/contacts';
@@ -21,18 +21,14 @@ const App = (): JSX.Element => (
 
         <Route path={AppRoute.Booking}
           element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
+            <PrivateRoute>
               <Booking />
             </PrivateRoute>
           }
         />
         <Route path={AppRoute.MyQuests}
           element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
+            <PrivateRoute>
               <MyQuests />
             </PrivateRoute>
           }
