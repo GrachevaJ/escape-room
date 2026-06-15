@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import Catalog from '../../pages/catalog/catalog';
 import Login from '../../pages/login/login';
@@ -9,9 +10,10 @@ import MyQuests from '../../pages/my-quests/my-quests';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 import Layout from '../layout/layout';
+import history from '../../history';
 
 const App = (): JSX.Element => (
-  <BrowserRouter>
+  <HistoryRouter history={history}>
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route index element={<Catalog />} />
@@ -36,7 +38,7 @@ const App = (): JSX.Element => (
       </Route>
       <Route path='*' element={<NotFound />} />
     </Routes>
-  </BrowserRouter>
+  </HistoryRouter>
 );
 
 export default App;

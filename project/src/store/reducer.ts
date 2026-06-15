@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { Offer } from '../types/types';
-import { fetchOffers, fetchUserStatus, resetFilters, setLevel, setType } from './actions';
+import { Offer, User } from '../types/types';
+import { fetchOffers, fetchUserStatus, loginUser, resetFilters, setLevel, setType } from './actions';
 import { AuthorizationStatus } from '../const';
 
 type State = {
@@ -9,6 +9,7 @@ type State = {
   type: string;
   isOffersLoading: boolean;
   authorizationStatus: AuthorizationStatus;
+  user: User['email'];
 }
 
 const initialState: State = {
@@ -16,7 +17,8 @@ const initialState: State = {
   level: 'any',
   type: 'all',
   isOffersLoading: true,
-  authorizationStatus: AuthorizationStatus.NoAuth
+  authorizationStatus: AuthorizationStatus.NoAuth,
+  user: ''
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -45,5 +47,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchUserStatus.rejected, (state) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
+    })
+    .addCase(loginUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.authorizationStatus = AuthorizationStatus.Auth;
     });
 });

@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks/use-app';
+import App from '../app/app';
 
 const Header = ():JSX.Element => {
   const authorzationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -33,7 +34,7 @@ const Header = ():JSX.Element => {
         </nav>
         <div className="header__side-nav">
           {location.pathname === '/login' ? '' : (
-            <a className="btn btn--accent header__side-item" href="#">{authorzationStatus === AuthorizationStatus.Auth ? 'Выйти' : 'Войти'}</a>
+            <Link className="btn btn--accent header__side-item" to={AppRoute.Login}>{authorzationStatus === AuthorizationStatus.Auth ? 'Выйти' : 'Войти'}</Link>
           )}
           <a className="link header__side-item header__phone-link" href="tel:88003335599">8 (000) 111-11-11</a>
         </div>

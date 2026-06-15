@@ -45,3 +45,4 @@ export type User = {
   token: string;
 };
 
+export type UserAuth = Pick<User, 'email'> & {password: string};
