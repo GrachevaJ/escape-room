@@ -16,9 +16,6 @@ const Booking = ():JSX.Element => {
   const activeSlotsToday = activeBookingInfo?.slots.today;
   const activeSlotsTomorrow = activeBookingInfo?.slots.tomorrow;
 
-  // eslint-disable-next-line no-console
-  console.log(activeBookingInfo);
-
   return (
     <main className="page-content decorated-page">
       <div className="decorated-page__decor" aria-hidden="true">
@@ -83,7 +80,7 @@ const Booking = ():JSX.Element => {
               <input type="number" id="person" name="person" placeholder="Количество участников" required />
             </div>
             <label className="custom-checkbox booking-form__checkbox booking-form__checkbox--children">
-              <input type="checkbox" id="children" name="children" checked />
+              <input type="checkbox" id="children" name="children" />
               <span className="custom-checkbox__icon">
                 <svg width="20" height="17" aria-hidden="true">
                   <use xlinkHref="#icon-tick"></use>

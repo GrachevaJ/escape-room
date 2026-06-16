@@ -13,8 +13,8 @@ const Level = ({name, isActive, onClick}: LevelProps):JSX.Element =>{
   };
 
   return (
-    <li className="filter__item" onClick={handleClick}>
-      <input type="radio" name="level" id={name} checked={isActive} />
+    <li className="filter__item">
+      <input type="radio" name="level" id={name} checked={isActive} onChange={handleClick}/>
       <label className="filter__label" htmlFor={name}>
         <span className="filter__label-text">{`${levelLabels[name][0].toUpperCase()}${levelLabels[name].slice(1)}`}</span>
       </label>

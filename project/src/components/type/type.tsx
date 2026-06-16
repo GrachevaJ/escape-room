@@ -24,8 +24,8 @@ const Type = ({name, isActive, onClick}: TypeProps):JSX.Element =>{
   }
 
   return (
-    <li className="filter__item" onClick={handleClick}>
-      <input type="radio" name="type" id={name} checked={isActive} />
+    <li className="filter__item">
+      <input type="radio" name="type" id={name} checked={isActive} onChange={handleClick}/>
       <label className="filter__label" htmlFor={name}>
         <svg className="filter__icon" width="26" height="30" aria-hidden="true">
           <use xlinkHref={`#icon-${iconName}`}></use>

@@ -20,7 +20,7 @@ const initialState: State = {
   level: 'any',
   type: 'all',
   isOffersLoading: false,
-  authorizationStatus: AuthorizationStatus.NoAuth,
+  authorizationStatus: AuthorizationStatus.Unknown,
   user: '',
   offer: null,
   isOfferLoading: false,
