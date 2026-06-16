@@ -35,7 +35,7 @@ const Card = ({offer, place}: CardProps):JSX.Element => {
           </li>
         </ul>
         {place === 'my-quests' ? (
-          <Link to={AppRoute.Booking}>
+          <Link to={`${AppRoute.Quest}/${id}${AppRoute.Booking}`}>
             <button className="btn btn--accent btn--secondary quest-card__btn" type="button">Отменить</button>
           </Link>) : ''}
       </div>

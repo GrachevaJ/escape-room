@@ -21,7 +21,7 @@ const App = (): JSX.Element => (
         <Route path={AppRoute.Contacts} element={<Contacts />} />
         <Route path={`${AppRoute.Quest}/:id`} element={<Quest />} />
 
-        <Route path={AppRoute.Booking}
+        <Route path={`${AppRoute.Quest}/:id${AppRoute.Booking}`}
           element={
             <PrivateRoute>
               <Booking />

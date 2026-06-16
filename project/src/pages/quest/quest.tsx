@@ -3,19 +3,21 @@ import { AppRoute, levelLabels, typeLabels } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import Spinner from '../../components/spinner/spinner';
 import { fetchBookingInfo, fetchOffer } from '../../store/actions';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Quest = ():JSX.Element => {
   const params = useParams();
   const dispatch = useAppDispatch();
   const isOfferLoading = useAppSelector((state) => state.isOfferLoading);
   const offer = useAppSelector((state) => state.offer);
+  const [offerId, setOfferId] = useState<string>('');
 
   useEffect(() => {
     const {id} = params;
     if (id) {
       dispatch(fetchOffer(id));
       dispatch(fetchBookingInfo(id));
+      setOfferId(id);
     }
   }, [params, dispatch]);
 
@@ -54,7 +56,7 @@ const Quest = ():JSX.Element => {
             </li>
           </ul>
           <p className="quest-page__description">{description}</p>
-          <Link className="btn btn--accent btn--cta quest-page__btn" to={AppRoute.Booking}>Забронировать</Link>
+          <Link className="btn btn--accent btn--cta quest-page__btn" to={`${AppRoute.Quest}/${offerId}${AppRoute.Booking}`}>Забронировать</Link>
         </div>
       </div>
     </main>

@@ -13,6 +13,7 @@ type State = {
   offer: Offer | null;
   isOfferLoading: boolean;
   bookingInfo: BookingInfo[];
+  isBookingInfoLoading: boolean;
 }
 
 const initialState: State = {
@@ -24,7 +25,8 @@ const initialState: State = {
   user: '',
   offer: null,
   isOfferLoading: false,
-  bookingInfo: []
+  bookingInfo: [],
+  isBookingInfoLoading: false
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -43,6 +45,7 @@ export const reducer = createReducer(initialState, (builder) => {
       state.isOffersLoading = true;
     })
     .addCase(fetchOffers.fulfilled, (state, action) => {
+      state.isOffersLoading = false;
       state.offers = action.payload;
     })
     .addCase(fetchOffers.rejected, (state) => {
@@ -72,7 +75,11 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(fetchOffer.rejected, (state) => {
       state.isOfferLoading = true;
     })
+    .addCase(fetchBookingInfo.pending, (state) => {
+      state.isBookingInfoLoading = true;
+    })
     .addCase(fetchBookingInfo.fulfilled, (state, action) => {
+      state.isBookingInfoLoading = false;
       state.bookingInfo = action.payload;
     });
 });

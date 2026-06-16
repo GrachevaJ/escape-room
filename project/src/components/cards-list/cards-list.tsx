@@ -26,7 +26,7 @@ const CardsList = ({place = 'catalog'}: CardsListProps):JSX.Element => {
     dispatch(resetFilters());
   }, [dispatch]);
 
-  if (!isOffersLoading) {
+  if (isOffersLoading) {
     return <Spinner />;
   }
 
