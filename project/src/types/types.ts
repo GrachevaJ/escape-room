@@ -22,6 +22,8 @@ export type Location = {
   coords: [number, number];
 };
 
+export type AddressesType = Location & {id: string};
+
 export type BookingInfo = {
   id: string;
   location: Location;

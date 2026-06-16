@@ -1,10 +1,9 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import type { History } from 'history';
-import { LevelName, Offer, TypeName, User, UserAuth } from '../types/types';
-import { ApiRoute, AppRoute } from '../const';
+import { BookingInfo, LevelName, Offer, TypeName, User, UserAuth } from '../types/types';
+import { ApiRoute, AppRoute, HttpCode } from '../const';
 import { Token } from '../utils';
-import history from '../history';
-import { AxiosInstance } from 'axios';
+import { AxiosError, AxiosInstance } from 'axios';
 
 type Extra = {
   api: AxiosInstance;
@@ -19,7 +18,8 @@ export const Action = {
   FETCH_USER_STATUS: 'user/fetch-status',
   LOGIN_USER: 'user/login',
   LOGOUT_USER: 'user/logout',
-  FETCH_OFFER: 'offer/fetch'
+  FETCH_OFFER: 'offer/fetch',
+  FETCH_BOOKING_INFO: 'booking-info/fetch'
 };
 
 export const setLevel = createAction<LevelName>(Action.SET_LEVEL);
@@ -49,7 +49,7 @@ export const fetchUserStatus = createAsyncThunk<User, undefined, {extra: Extra}>
 export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, {extra: Extra}>(
   Action.LOGIN_USER,
   async ({email, password}, {extra}) => {
-    const {api} = extra;
+    const {api, history} = extra;
     const {data} = await api.post<User>(ApiRoute.Login, {email, password});
     const {token} = data;
 
@@ -73,9 +73,31 @@ export const logoutUser = createAsyncThunk<void, undefined, {extra: Extra}>(
 export const fetchOffer = createAsyncThunk<Offer, Offer['id'], {extra: Extra}>(
   Action.FETCH_OFFER,
   async (id, {extra}) => {
+    const {api, history} = extra;
+
+    try {
+      const {data} = await api.get<Offer>(`${ApiRoute.Offers}/${id}`);
+
+      return data;
+    } catch (error) {
+      const axiosError = error as AxiosError;
+
+      if (axiosError.response?.status === HttpCode.NotFound) {
+        history.push(AppRoute.NotFound);
+      }
+
+      return Promise.reject(error);
+    }
+  }
+);
+
+export const fetchBookingInfo = createAsyncThunk<BookingInfo[], Offer['id'], {extra: Extra}>(
+  Action.FETCH_BOOKING_INFO,
+  async (id, {extra}) => {
     const {api} = extra;
-    const {data} = await api.get<Offer>(`${ApiRoute.Offers}/${id}`);
+    const {data} = await api.get<BookingInfo[]>(`${ApiRoute.Offers}/${id}${ApiRoute.Booking}`);
 
     return data;
   }
 );
+

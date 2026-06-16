@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { Offer, User } from '../types/types';
-import { fetchOffer, fetchOffers, fetchUserStatus, loginUser, logoutUser, resetFilters, setLevel, setType } from './actions';
+import { BookingInfo, Offer, User } from '../types/types';
+import { fetchBookingInfo, fetchOffer, fetchOffers, fetchUserStatus, loginUser, logoutUser, resetFilters, setLevel, setType } from './actions';
 import { AuthorizationStatus } from '../const';
 
 type State = {
@@ -12,6 +12,7 @@ type State = {
   user: User['email'];
   offer: Offer | null;
   isOfferLoading: boolean;
+  bookingInfo: BookingInfo[];
 }
 
 const initialState: State = {
@@ -22,7 +23,8 @@ const initialState: State = {
   authorizationStatus: AuthorizationStatus.NoAuth,
   user: '',
   offer: null,
-  isOfferLoading: false
+  isOfferLoading: false,
+  bookingInfo: []
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -69,5 +71,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchOffer.rejected, (state) => {
       state.isOfferLoading = true;
+    })
+    .addCase(fetchBookingInfo.fulfilled, (state, action) => {
+      state.bookingInfo = action.payload;
     });
 });

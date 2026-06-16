@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { AppRoute, levelLabels, typeLabels } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import Spinner from '../../components/spinner/spinner';
-import { fetchOffer } from '../../store/actions';
+import { fetchBookingInfo, fetchOffer } from '../../store/actions';
 import { useEffect } from 'react';
 
 const Quest = ():JSX.Element => {
@@ -15,6 +15,7 @@ const Quest = ():JSX.Element => {
     const {id} = params;
     if (id) {
       dispatch(fetchOffer(id));
+      dispatch(fetchBookingInfo(id));
     }
   }, [params, dispatch]);
 
