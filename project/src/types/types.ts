@@ -24,6 +24,7 @@ export type Location = {
 
 export type AddressesType = Location & {id: string};
 
+
 export type BookingInfo = {
   id: string;
   location: Location;
@@ -38,6 +39,18 @@ export type BookingInfo = {
     }[];
   };
 };
+
+export type BookingData = {
+  date: string;
+  time: string;
+  contactPerson: string;
+  phone: string;
+  withChildren: boolean;
+  peopleCount: number;
+  placeId: string;
+}
+
+export type ReservationData = BookingData & Location & {quest: Omit<Offer, 'description' | 'coverImg' | 'coverImgWebp'> & {peopleMinMax: [number]}};
 
 export type State = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

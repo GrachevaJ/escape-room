@@ -54,7 +54,7 @@ const Booking = ():JSX.Element => {
             <p className="booking-map__address">{`Вы выбрали: ${activeAddressName || ''}`}</p>
           </div>
         </div>
-        <Form today={activeSlotsToday} tomorrow={activeSlotsTomorrow} />
+        <Form today={activeSlotsToday} tomorrow={activeSlotsTomorrow} placeId={activeAddressId} peopleMinMax={currentOffer?.peopleMinMax} offerId={currentOffer?.id}/>
       </div>
     </main>
   );

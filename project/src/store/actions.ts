@@ -1,9 +1,9 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import type { History } from 'history';
-import { BookingInfo, LevelName, Offer, TypeName, User, UserAuth } from '../types/types';
+import { BookingData, BookingInfo, LevelName, Offer, ReservationData, TypeName, User, UserAuth } from '../types/types';
 import { ApiRoute, AppRoute, HttpCode } from '../const';
 import { Token } from '../utils';
-import { AxiosError, AxiosInstance } from 'axios';
+import { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 
 type Extra = {
   api: AxiosInstance;
@@ -19,7 +19,8 @@ export const Action = {
   LOGIN_USER: 'user/login',
   LOGOUT_USER: 'user/logout',
   FETCH_OFFER: 'offer/fetch',
-  FETCH_BOOKING_INFO: 'booking-info/fetch'
+  FETCH_BOOKING_INFO: 'booking-info/fetch',
+  POST_BOOKING_DATA: 'booking-data/post'
 };
 
 export const setLevel = createAction<LevelName>(Action.SET_LEVEL);
@@ -98,6 +99,18 @@ export const fetchBookingInfo = createAsyncThunk<BookingInfo[], Offer['id'], {ex
     const {data} = await api.get<BookingInfo[]>(`${ApiRoute.Offers}/${id}${ApiRoute.Booking}`);
 
     return data;
+  }
+);
+
+export const postBookingData = createAsyncThunk<ReservationData, BookingData & {id: string}, {extra: Extra}>(
+  Action.POST_BOOKING_DATA,
+  async (bookingData, {extra}) => {
+    const {api, history} = extra;
+    const {id: questId, ...bookingDataBody} = bookingData;
+    const response: AxiosResponse<ReservationData> = await api.post<ReservationData>(`${ApiRoute.Offers}/${questId}${ApiRoute.Booking}`, bookingDataBody);
+
+    history.push(ApiRoute.MyQuests);
+    return response.data;
   }
 );
 

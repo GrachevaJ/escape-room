@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { BookingInfo, Offer, User } from '../types/types';
-import { fetchBookingInfo, fetchOffer, fetchOffers, fetchUserStatus, loginUser, logoutUser, resetFilters, setLevel, setType } from './actions';
+import { BookingInfo, Offer, ReservationData, User } from '../types/types';
+import { fetchBookingInfo, fetchOffer, fetchOffers, fetchUserStatus, loginUser, logoutUser, postBookingData, resetFilters, setLevel, setType } from './actions';
 import { AuthorizationStatus } from '../const';
 
 type State = {
@@ -14,6 +14,7 @@ type State = {
   isOfferLoading: boolean;
   bookingInfo: BookingInfo[];
   isBookingInfoLoading: boolean;
+  reservationData: ReservationData | null;
 }
 
 const initialState: State = {
@@ -26,7 +27,8 @@ const initialState: State = {
   offer: null,
   isOfferLoading: false,
   bookingInfo: [],
-  isBookingInfoLoading: false
+  isBookingInfoLoading: false,
+  reservationData: null
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -81,5 +83,8 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(fetchBookingInfo.fulfilled, (state, action) => {
       state.isBookingInfoLoading = false;
       state.bookingInfo = action.payload;
+    })
+    .addCase(postBookingData.fulfilled, (state, action) => {
+      state.reservationData = action.payload;
     });
 });
