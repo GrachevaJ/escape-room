@@ -59,7 +59,7 @@ const Map = ({locations, activeOffer, onMarkerClick}: MapProps): JSX.Element => 
     }
   }, [map, locations, activeOffer, onMarkerClick]);
 
-  return <div className="map" ref={mapRef}/>;
+  return <div className="map__container" ref={mapRef}/>;
 };
 
 export default Map;

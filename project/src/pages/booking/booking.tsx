@@ -35,13 +35,11 @@ const Booking = ():JSX.Element => {
         <div className="page-content__item">
           <div className="booking-map">
             <div className="map">
-              <div className="map__container">
-                <Map locations={bookingInfo.map((item) => ({
-                  id: item.id,
-                  ...item.location
-                }))} activeOffer={activeAddressId} onMarkerClick={handleClick}
-                />
-              </div>
+              <Map locations={bookingInfo.map((item) => ({
+                id: item.id,
+                ...item.location
+              }))} activeOffer={activeAddressId} onMarkerClick={handleClick}
+              />
             </div>
             <p className="booking-map__address">{`Вы выбрали: ${activeAddress || ''}`}</p>
           </div>
