@@ -47,10 +47,10 @@ export type BookingData = {
   phone: string;
   withChildren: boolean;
   peopleCount: number;
-  placeId: string;
+  id: string;
 }
 
-export type ReservationData = BookingData & Location & {quest: Omit<Offer, 'description' | 'coverImg' | 'coverImgWebp'> & {peopleMinMax: [number]}};
+export type ReservationData = BookingData & {location: Location} & {quest: Omit<Offer, 'description' | 'coverImg' | 'coverImgWebp'> & {peopleMinMax: [number]}};
 
 export type State = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

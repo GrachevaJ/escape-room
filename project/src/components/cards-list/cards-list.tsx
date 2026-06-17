@@ -5,22 +5,13 @@ import { resetFilters } from '../../store/actions';
 import Spinner from '../spinner/spinner';
 import CardsListEmpty from '../cards-list-empty/cards-list-empty';
 
-type CardsListProps = {
-  place?: 'catalog' | 'my-quests';
-}
 
-const CardsList = ({place = 'catalog'}: CardsListProps):JSX.Element => {
+const CardsList = ():JSX.Element => {
   const dispatch = useAppDispatch();
   const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
-  const offers = useAppSelector((state) => {
-    if (place !== 'catalog') {
-      return state.offers;
-    }
-
-    return state.offers
-      .filter((offer) => state.level === 'any' || offer.level === state.level)
-      .filter((offer) => state.type === 'all' || offer.type === state.type);
-  });
+  const offers = useAppSelector((state) => state.offers
+    .filter((offer) => state.level === 'any' || offer.level === state.level)
+    .filter((offer) => state.type === 'all' || offer.type === state.type));
 
   useEffect(() => () => {
     dispatch(resetFilters());
@@ -36,7 +27,7 @@ const CardsList = ({place = 'catalog'}: CardsListProps):JSX.Element => {
 
   return (
     <div className="cards-grid">
-      {offers.map((offer) => <Card key={offer.id} place={place} offer={offer} />)}
+      {offers.map((offer) => <Card key={offer.id} offer={offer} />)}
     </div>
   );
 };

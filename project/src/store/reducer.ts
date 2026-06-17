@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { BookingInfo, Offer, ReservationData, User } from '../types/types';
-import { fetchBookingInfo, fetchOffer, fetchOffers, fetchUserStatus, loginUser, logoutUser, postBookingData, resetFilters, setLevel, setType } from './actions';
+import { deleteReservation, fetchBookingInfo, fetchOffer, fetchOffers, fetchReservations, fetchUserStatus, loginUser, logoutUser, postBookingData, resetFilters, setLevel, setType } from './actions';
 import { AuthorizationStatus } from '../const';
 
 type State = {
@@ -15,6 +15,9 @@ type State = {
   bookingInfo: BookingInfo[];
   isBookingInfoLoading: boolean;
   reservationData: ReservationData | null;
+  reservations: ReservationData[];
+  isReservationsLoading: boolean;
+  isDeletingReservationLoading: boolean;
 }
 
 const initialState: State = {
@@ -28,7 +31,10 @@ const initialState: State = {
   isOfferLoading: false,
   bookingInfo: [],
   isBookingInfoLoading: false,
-  reservationData: null
+  reservationData: null,
+  reservations: [],
+  isReservationsLoading: false,
+  isDeletingReservationLoading: false
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -86,5 +92,23 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(postBookingData.fulfilled, (state, action) => {
       state.reservationData = action.payload;
+    })
+    .addCase(fetchReservations.pending, (state) => {
+      state.isReservationsLoading = true;
+    })
+    .addCase(fetchReservations.fulfilled, (state, action) => {
+      state.isReservationsLoading = false;
+      state.reservations = action.payload;
+    })
+    .addCase(fetchReservations.rejected, (state) => {
+      state.isReservationsLoading = true;
+    })
+    .addCase(deleteReservation.pending, (state) => {
+      state.isDeletingReservationLoading = true;
+    })
+    .addCase(deleteReservation.fulfilled, (state, action) => {
+      state.isDeletingReservationLoading = false;
+      const deletedId = action.meta.arg;
+      state.reservations = state.reservations.filter((item) => item.id !== deletedId);
     });
 });

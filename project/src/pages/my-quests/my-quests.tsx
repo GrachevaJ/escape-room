@@ -1,4 +1,5 @@
-import CardsList from '../../components/cards-list/cards-list';
+import ReservationCardsList from '../../components/reservation-cards-list/reservation-cards-list';
+
 
 const MyQuests = ():JSX.Element => (
   <main className="page-content decorated-page">
@@ -11,7 +12,7 @@ const MyQuests = ():JSX.Element => (
       <div className="page-content__title-wrapper">
         <h1 className="title title--size-m page-content__title">Мои бронирования</h1>
       </div>
-      <CardsList place='my-quests' />
+      <ReservationCardsList />
     </div>
   </main>
 );

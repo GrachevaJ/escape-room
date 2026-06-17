@@ -20,7 +20,9 @@ export const Action = {
   LOGOUT_USER: 'user/logout',
   FETCH_OFFER: 'offer/fetch',
   FETCH_BOOKING_INFO: 'booking-info/fetch',
-  POST_BOOKING_DATA: 'booking-data/post'
+  POST_BOOKING_DATA: 'booking-data/post',
+  FETCH_RESERVATIONS: 'reservation/fetch',
+  DELETE_RESERVATION: 'reservation/delete'
 };
 
 export const setLevel = createAction<LevelName>(Action.SET_LEVEL);
@@ -111,6 +113,24 @@ export const postBookingData = createAsyncThunk<ReservationData, BookingData & {
 
     history.push(ApiRoute.MyQuests);
     return response.data;
+  }
+);
+
+export const fetchReservations = createAsyncThunk<ReservationData[], undefined, {extra: Extra}>(
+  Action.FETCH_RESERVATIONS,
+  async (_, {extra}) => {
+    const {api} = extra;
+    const {data} = await api.get<ReservationData[]>(ApiRoute.Reservation);
+
+    return data;
+  }
+);
+
+export const deleteReservation = createAsyncThunk<void, ReservationData['id'], {extra: Extra}>(
+  Action.DELETE_RESERVATION,
+  async (id, {extra}) => {
+    const {api} = extra;
+    await api.delete(`${ApiRoute.Reservation}/${id}`);
   }
 );
 

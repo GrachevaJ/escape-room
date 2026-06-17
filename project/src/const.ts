@@ -25,7 +25,8 @@ export enum ApiRoute {
   Login = '/login',
   Logout = '/logout',
   Booking = '/booking',
-  MyQuests = '/my-quests'
+  MyQuests = '/my-quests',
+  Reservation = '/reservation'
 }
 
 export const levels = ['any', 'easy', 'medium', 'hard'];
