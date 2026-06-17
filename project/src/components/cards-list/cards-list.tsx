@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import Card from '../card/card';
-import { resetFilters } from '../../store/actions';
 import Spinner from '../spinner/spinner';
 import CardsListEmpty from '../cards-list-empty/cards-list-empty';
 import { getIsOffersLoading, selectOffers } from '../../store/site-data/selectors';
+import { resetFilters } from '../../store/site-process/site-process';
 
 
 const CardsList = ():JSX.Element => {

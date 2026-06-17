@@ -30,7 +30,7 @@ export const siteData = createSlice({
         state.offers = action.payload;
       })
       .addCase(fetchOffers.rejected, (state) => {
-        state.isOffersLoading = true;
+        state.isOffersLoading = false;
       })
       .addCase(fetchOffer.pending, (state) => {
         state.isOfferLoading = true;
@@ -40,7 +40,7 @@ export const siteData = createSlice({
         state.offer = action.payload;
       })
       .addCase(fetchOffer.rejected, (state) => {
-        state.isOfferLoading = true;
+        state.isOfferLoading = false;
       })
       .addCase(fetchBookingInfo.pending, (state) => {
         state.isBookingInfoLoading = true;

@@ -1,6 +1,6 @@
-import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { History } from 'history';
-import { BookingData, BookingInfo, LevelName, Offer, ReservationData, TypeName, User, UserAuth } from '../types/types';
+import { BookingData, BookingInfo, Offer, ReservationData, User, UserAuth } from '../types/types';
 import { ApiRoute, AppRoute, HttpCode } from '../const';
 import { Token } from '../utils';
 import { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
@@ -24,10 +24,6 @@ export const Action = {
   FETCH_RESERVATIONS: 'reservation/fetch',
   DELETE_RESERVATION: 'reservation/delete'
 };
-
-export const setLevel = createAction<LevelName>(Action.SET_LEVEL);
-export const setType = createAction<TypeName>(Action.SET_TYPE);
-export const resetFilters = createAction(Action.RESET_FILTERS);
 
 export const fetchOffers = createAsyncThunk<Offer[], undefined, {extra: Extra}>(
   Action.FETCH_OFFERS,

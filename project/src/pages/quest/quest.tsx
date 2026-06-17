@@ -48,7 +48,7 @@ const Quest = ():JSX.Element => {
             <li className="tags__item">
               <svg width="11" height="14" aria-hidden="true">
                 <use xlinkHref="#icon-person"></use>
-              </svg>{`${peopleMinMax[0]}-${peopleMinMax[1]}чел`}
+              </svg>{`${peopleMinMax[0]}-${peopleMinMax[1]} чел`}
             </li>
             <li className="tags__item">
               <svg width="14" height="14" aria-hidden="true">
