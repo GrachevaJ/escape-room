@@ -2,11 +2,12 @@ import { Link, useLocation } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import { logoutUser } from '../../store/actions';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 
 const Header = ():JSX.Element => {
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const location = useLocation();
 
   const isLoginPage = location.pathname === AppRoute.Login;
@@ -52,7 +53,7 @@ const Header = ():JSX.Element => {
           {!isLoginPage && isAuthorized && (
             <Link className="btn btn--accent header__side-item" to='#' onClick={handleClick}>Выйти</Link>
           )}
-          <a className="link header__side-item header__phone-link" href="tel:88003335599">8 (000) 111-11-11</a>
+          <Link className="link header__side-item header__phone-link" to="tel:88003335599">8 (000) 111-11-11</Link>
         </div>
       </div>
     </header>

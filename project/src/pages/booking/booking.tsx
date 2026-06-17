@@ -4,13 +4,14 @@ import { useState } from 'react';
 import { BookingInfo } from '../../types/types';
 import Spinner from '../../components/spinner/spinner';
 import Form from '../../components/form/form';
+import { getBookingInfo, getIsBookingInfoLoading, getOffer } from '../../store/site-data/selectors';
 
 
 const Booking = ():JSX.Element => {
-  const bookingInfo = useAppSelector((state) => state.bookingInfo);
-  const isBookingInfoLoading = useAppSelector((state) => state.isBookingInfoLoading);
+  const bookingInfo = useAppSelector(getBookingInfo);
+  const isBookingInfoLoading = useAppSelector(getIsBookingInfoLoading);
   const [activeAddressId, setActiveAddressId] = useState<BookingInfo['id']>(bookingInfo[0]?.id);
-  const currentOffer = useAppSelector((state) => state.offer);
+  const currentOffer = useAppSelector(getOffer);
 
   if (isBookingInfoLoading) {
     return <Spinner />;

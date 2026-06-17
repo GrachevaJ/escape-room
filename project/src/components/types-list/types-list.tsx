@@ -1,12 +1,13 @@
 import { types } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
-import { setType } from '../../store/actions';
+import { setType } from '../../store/site-process/site-process';
+import { getType } from '../../store/site-process/selectors';
 import { TypeName } from '../../types/types';
 import Type from '../type/type';
 
 const TypesList = ():JSX.Element => {
   const dispatch = useAppDispatch();
-  const activeType = useAppSelector((state) => state.type);
+  const activeType = useAppSelector(getType);
 
   const handleClick = (name: TypeName) => {
     dispatch(setType(name));

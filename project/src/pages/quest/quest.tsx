@@ -4,12 +4,13 @@ import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import Spinner from '../../components/spinner/spinner';
 import { fetchBookingInfo, fetchOffer } from '../../store/actions';
 import { useEffect, useState } from 'react';
+import { getIsOfferLoading, getOffer } from '../../store/site-data/selectors';
 
 const Quest = ():JSX.Element => {
   const params = useParams();
   const dispatch = useAppDispatch();
-  const isOfferLoading = useAppSelector((state) => state.isOfferLoading);
-  const offer = useAppSelector((state) => state.offer);
+  const isOfferLoading = useAppSelector(getIsOfferLoading);
+  const offer = useAppSelector(getOffer);
   const [offerId, setOfferId] = useState<string>('');
 
   useEffect(() => {

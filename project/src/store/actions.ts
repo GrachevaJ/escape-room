@@ -49,7 +49,7 @@ export const fetchUserStatus = createAsyncThunk<User, undefined, {extra: Extra}>
   }
 );
 
-export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, {extra: Extra}>(
+export const loginUser = createAsyncThunk<void, UserAuth, {extra: Extra}>(
   Action.LOGIN_USER,
   async ({email, password}, {extra}) => {
     const {api, history} = extra;
@@ -58,8 +58,6 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, {extra: E
 
     Token.save(token);
     history.push(AppRoute.Catalog);
-
-    return email;
   }
 );
 

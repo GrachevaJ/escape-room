@@ -29,6 +29,13 @@ export enum ApiRoute {
   Reservation = '/reservation'
 }
 
+export enum StoreSlice {
+  SiteData = 'SITE_DATA',
+  SiteProcess = 'SITE_PROCESS',
+  UserProcess = 'USER_PROCESS',
+}
+
+
 export const levels = ['any', 'easy', 'medium', 'hard'];
 export const types = ['all', 'adventures', 'horror', 'mystic', 'detective', 'sci-fi'];
 

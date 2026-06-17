@@ -4,14 +4,13 @@ import Card from '../card/card';
 import { resetFilters } from '../../store/actions';
 import Spinner from '../spinner/spinner';
 import CardsListEmpty from '../cards-list-empty/cards-list-empty';
+import { getIsOffersLoading, selectOffers } from '../../store/site-data/selectors';
 
 
 const CardsList = ():JSX.Element => {
   const dispatch = useAppDispatch();
-  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
-  const offers = useAppSelector((state) => state.offers
-    .filter((offer) => state.level === 'any' || offer.level === state.level)
-    .filter((offer) => state.type === 'all' || offer.type === state.type));
+  const isOffersLoading = useAppSelector(getIsOffersLoading);
+  const offers = useAppSelector(selectOffers);
 
   useEffect(() => () => {
     dispatch(resetFilters());

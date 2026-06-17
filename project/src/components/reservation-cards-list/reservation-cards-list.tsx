@@ -4,11 +4,12 @@ import { fetchReservations } from '../../store/actions';
 import BookingCard from '../reservation-card/reservation-card';
 import MyQuestsEmpty from '../my-quests-empty/my-quests-emty';
 import Spinner from '../spinner/spinner';
+import { getIsReservationsLoading, getReservations } from '../../store/site-data/selectors';
 
 const ReservationCardsList = ():JSX.Element => {
   const dispatch = useAppDispatch();
-  const reservations = useAppSelector((state) => state.reservations);
-  const isReservationsLoading = useAppSelector((state) => state.isReservationsLoading);
+  const reservations = useAppSelector(getReservations);
+  const isReservationsLoading = useAppSelector(getIsReservationsLoading);
 
   useEffect(() => {
     dispatch(fetchReservations());
