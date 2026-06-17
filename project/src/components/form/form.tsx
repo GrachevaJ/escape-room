@@ -30,7 +30,7 @@ const Form = ({today, tomorrow, placeId, peopleMinMax, offerId}: FormProps):JSX.
   const dispatch = useAppDispatch();
   const [minPeople, maxPeople] = peopleMinMax as [number, number];
 
-  const {register, handleSubmit, formState: {errors}} = useForm<BookingFormData>();
+  const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<BookingFormData>();
 
   const onSubmit = (data: BookingFormData) => {
     const [date, time] = data.dateSlot.split('-');
@@ -72,7 +72,6 @@ const Form = ({today, tomorrow, placeId, peopleMinMax, offerId}: FormProps):JSX.
               </label>
             ))}
           </div>
-          {errors.dateSlot && <span style={{color: '#f2890f'}}>{errors.dateSlot.message}</span>}
         </fieldset>
         <fieldset className="booking-form__date-section">
           <legend className="booking-form__date-title">Завтра</legend>
@@ -153,14 +152,14 @@ const Form = ({today, tomorrow, placeId, peopleMinMax, offerId}: FormProps):JSX.
           <span className="custom-checkbox__label">Со мной будут дети</span>
         </label>
       </fieldset>
-      <button className="btn btn--accent btn--cta booking-form__submit" type="submit">Забронировать</button>
+      {errors['user-agreement'] && <span style={{color: '#f2890f', margin: 'auto'}}>{errors['user-agreement'].message}</span>}
+      <button className="btn btn--accent btn--cta booking-form__submit" type="submit" disabled={isSubmitting}>{isSubmitting ? 'Отправка...' : 'Забронировать'}</button>
       <label className="custom-checkbox booking-form__checkbox booking-form__checkbox--agreement">
         <input
           type="checkbox"
           id="id-order-agreement"
           {...register('user-agreement', {required: 'Необходимо подтвердить согласие'})}
         />
-        {errors['user-agreement'] && <span style={{color: '#f2890f'}}>{errors['user-agreement'].message}</span>}
         <span className="custom-checkbox__icon">
           <svg width="20" height="17" aria-hidden="true">
             <use xlinkHref="#icon-tick"></use>

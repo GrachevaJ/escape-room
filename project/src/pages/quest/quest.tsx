@@ -26,7 +26,7 @@ const Quest = ():JSX.Element => {
   }
 
   if (!offer) {
-    return <p className="title title--size-m page-content__title">Данные не найдены</p>;
+    return <p className="title title--size-s page-content__title">Данные не найдены</p>;
   }
 
   const {title, level, type, peopleMinMax, description, coverImg, coverImgWebp} = offer;

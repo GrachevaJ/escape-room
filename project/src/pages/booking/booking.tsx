@@ -17,7 +17,7 @@ const Booking = ():JSX.Element => {
   }
 
   if (!activeAddressId) {
-    return <div>Ошибка загрузки данных</div>;
+    return <p className="title title--size-s page-content__title" style={{textAlign: 'center'}}>Ошибка загрузки данных.</p>;
   }
 
   const handleClick = (id: BookingInfo['id']) => {

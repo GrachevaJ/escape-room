@@ -3,7 +3,6 @@ import { ReservationData } from '../../types/types';
 import { levelLabels } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-app';
 import { deleteReservation } from '../../store/actions';
-import Spinner from '../spinner/spinner';
 
 type ReservationCardProps = {
   offer: ReservationData;
@@ -13,12 +12,7 @@ const ReservationCard = ({offer}: ReservationCardProps):JSX.Element => {
   const {title, previewImg, previewImgWebp, level} = offer.quest;
   const {id, date, time, location, peopleCount} = offer;
   const dispatch = useAppDispatch();
-  const isReservationsLoading = useAppSelector((state) => state.isReservationsLoading);
   const isDeletingLoading = useAppSelector((state) => state.isDeletingReservationLoading);
-
-  if (isReservationsLoading) {
-    return <Spinner />;
-  }
 
   const handleClick = () => {
     dispatch(deleteReservation(id));
