@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from './rootReducer';
+import { rootReducer } from './root-reducer';
 import { fetchOffers, fetchUserStatus } from './actions';
 import { createAPI } from '../api';
 import history from '../history';
